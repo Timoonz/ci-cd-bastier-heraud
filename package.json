@@ -15,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/Timoonz/ci-cd-bastier-heraud/issues"
   },
-  "homepage": "https://github.com/Timoonz/ci-cd-bastier-heraud#readme"
+  "homepage": "https://github.com/Timoonz/ci-cd-bastier-heraud#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.10",
+    "@types/pg": "^8.16.0",
+    "jest": "^30.2.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "express": "^5.0.1",
+    "pg": "^8.17.2"
+  }
 }
