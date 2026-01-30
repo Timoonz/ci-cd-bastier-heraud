@@ -1,9 +1,9 @@
 import express, { Express } from 'express';
 import { Pool } from 'pg';
 import { VehicleStore } from './store/vehicle';
-import { FindVehiclesController } from './controller/find'
-import { CreateVehicleController } from './controller/create'
-import { DeleteVehicleController } from './controller/delete'
+import { FindVehiclesController } from '../controller/find'
+import { CreateVehicleController } from '../controller/create'
+import { DeleteVehicleController } from '../controller/delete'
 import { errorHandler } from './errors';
 
 export function setupApp(db: Pool): Express {
