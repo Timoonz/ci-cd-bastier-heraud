@@ -54,6 +54,46 @@ describe("create-vehicle", () => {
         expect.stringMatching(/Created vehicle `abcd`, with ID `34`/i)
         );
 
-    })
+    });
+
+    // Si le serveur renvoie un 400 (Bad Request), la fonction doit renvoyer 
+    test('Affiche une erreur de validation quand la réponse serveur est 400' , async () => {
+
+        (axios.post as jest.Mock).mockRejectedValueOnce({
+            response: {
+                status: 400,
+                data: {
+                errors: [
+                    'Shortcode must be only 4 characters long']
+                },
+            },
+        });
+
+        await createVehicle({ ...testOptions, shortcode: 'abcdef' });
+
+        expect(console.error).toHaveBeenCalledWith(
+        expect.stringMatching(/Could not create the vehicle/i)
+        );
+        expect(console.error).toHaveBeenCalledWith(
+        expect.stringMatching(/Shortcode must be only 4 characters long/i)
+        );
+    });
+
+    test('Plusieurs erreurs de validation', async () => {
+
+                (axios.post as jest.Mock).mockRejectedValueOnce({
+            response: {
+                status: 400,
+                data: {
+                errors: [
+                    'Shortcode must be only 4 characters long',
+                    'Battery level must be between 0 and 100']
+                },
+            },
+        });
+
+        await createVehicle({ ...testOptions, shortcode: 'veryBigLargeAndBeautifulVehicle', battery: 1048 });
+
+    });
 
 })
