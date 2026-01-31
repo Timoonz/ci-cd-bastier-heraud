@@ -1,4 +1,4 @@
-import { VehicleStore } from '../src/store/vehicle';
+import { VehicleStore } from '../store/vehicle';
 import { Request, Response } from 'express';
 
 interface QueryParams {
