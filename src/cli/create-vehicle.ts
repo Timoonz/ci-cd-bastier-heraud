@@ -20,7 +20,7 @@ export async function createVehicle(options: CreateVehicleOptions) {
       latitude,
     });
 
-    const created = response.data;
+    const created = response.data as { id: number };
     console.log(`Created vehicle \`${shortcode}\`, with ID \`${created.id}\``);
     return created;
     
