@@ -36,6 +36,7 @@
   "dependencies": {
     "@types/axios": "^0.9.36",
     "axios": "^1.13.4",
+    "commander": "^14.0.3",
     "express": "^5.0.1",
     "pg": "^8.17.2"
   }
