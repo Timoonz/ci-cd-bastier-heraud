@@ -9,6 +9,15 @@ export interface CreateVehicleOptions {
   latitude:  number;
 }
 
+interface CreateResponse {
+  vehicle: {
+    id: number;
+    shortcode: string;
+    battery: number;
+    position: { longitude: number; latitude: number };
+  }
+}
+
 // Création d'un véhicule en envoyant une requête POST au serveur
 export async function createVehicle(options: CreateVehicleOptions) {
   const { server_address, shortcode, battery, longitude, latitude } = options;
@@ -21,7 +30,7 @@ export async function createVehicle(options: CreateVehicleOptions) {
       latitude,
     });
 
-    const created = response.data as { id: number };
+    const created = (response.data as CreateResponse).vehicle;
     console.log(`Created vehicle \`${shortcode}\`, with ID \`${created.id}\``);
     return created;
     
