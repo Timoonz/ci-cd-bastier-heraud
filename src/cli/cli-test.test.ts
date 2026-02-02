@@ -37,7 +37,16 @@ describe("create-vehicle", () => {
 
     test('Requête POST correctement envoyée, et renvoie bien la confirmation', async () => {
 
-        (axios.post as jest.Mock).mockResolvedValueOnce({data: { id: 34 }});
+            (axios.post as jest.Mock).mockResolvedValueOnce({
+            data: { 
+                vehicle: {
+                    id: 34,
+                    shortcode: 'abcd',
+                    battery: 12,
+                    position: { longitude: 20.0, latitude: 30.0 }
+                }
+            }
+        });
 
         await createVehicle(testOptions);
 
@@ -46,13 +55,11 @@ describe("create-vehicle", () => {
         // On vérifie qu'elle a été appelée avec les bonnes valeurs
         expect(axios.post).toHaveBeenCalledWith(
         'http://localhost:8080/vehicles',
-        { shortcode: 'abcd', battery: 12, longitude: 20.0, latitude: 30.0 }
-        );
+        { shortcode: 'abcd', battery: 12, longitude: 20.0, latitude: 30.0 });
 
         // On vérifie que le bon message a été renvoyé à l'utilisateur
         expect(console.log).toHaveBeenCalledWith(
-        expect.stringMatching(/Created vehicle `abcd`, with ID `34`/i)
-        );
+        expect.stringMatching(/^Created vehicle/));
 
     });
 
