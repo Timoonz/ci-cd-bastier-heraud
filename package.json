@@ -2,7 +2,9 @@
   "name": "vehicle-cli",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "bin": {
+    "vehicle-cli" : "./dist/vehicle-cli.js"
+  },  
   "scripts": {
     "build": "rm -rf ./dist && tsc",
     "start": "npm run build && node dist/index.js",
@@ -13,6 +15,7 @@
     "package": "docker build -t bastier_heraud/vehicle-server:${TAG}",
     "publish": "docker image push bastier_heraud/vehicle-server:${TAG}",
     "release": "npm run package && npm run publish"
+    "build-exec": "chmod +x dist/cli/vehicle-cli.js"
   },
   "repository": {
     "type": "git",
