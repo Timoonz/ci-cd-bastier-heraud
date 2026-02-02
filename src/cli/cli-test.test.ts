@@ -70,8 +70,11 @@ describe("create-vehicle", () => {
             response: {
                 status: 400,
                 data: {
-                errors: [
-                    'Shortcode must be only 4 characters long']
+                    error: {
+                        details: {
+                            violations: ['Shortcode must be only 4 characters long']
+                        }
+                    }
                 },
             },
         });
@@ -92,9 +95,13 @@ describe("create-vehicle", () => {
             response: {
                 status: 400,
                 data: {
-                errors: [
-                    'Shortcode must be only 4 characters long',
-                    'Battery level must be between 0 and 100']
+                    error: {
+                        details: {
+                            violations: [
+                            'Shortcode must be only 4 characters long',
+                            'Battery level must be between 0 and 100']
+                        }
+                    }
                 },
             },
         });
