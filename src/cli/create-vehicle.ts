@@ -36,9 +36,9 @@ export async function createVehicle(options: CreateVehicleOptions) {
     
   } catch (error: any) {
     // Gestion des erreurs de validation renvoyées par le serveur (400)
-    if (error.response?.status === 400 && error.response?.data?.errors?.length > 0) {
+    if (error.response?.status === 400 && error.response.data?.error?.details?.violations) {
       console.error("Could not create the vehicle");
-      for (const errMsg of error.response.data.errors) {
+      for (const errMsg of error.response.data.error.details.violations) {
         console.error(errMsg);
       }
       return null;
