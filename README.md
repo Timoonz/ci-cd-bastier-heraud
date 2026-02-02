@@ -7,7 +7,7 @@ ATTENTION: ce dépôt ne gère pas l'implémenation du *vehicle-server*, ou de l
 
 Pour mettre en place le cli sur votre machine, après avoir copié ce repository et en vous situant dans le dossier parent du projet (vehicle-cli), passez la commande suivante sur le terminal pour créer une image docker locale de l'application:
 ```bash
-    docker build -t vehicle-cli .
+docker build -t vehicle-cli .
 ```
 Et ensuite, pour pouvoir utiliser cette application sur n'importe lequel de votre terminal:
 ```bash
