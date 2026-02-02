@@ -1,0 +1,46 @@
+{
+  "name": "vehicle-cli",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "vehicle-cli" : "./dist/vehicle-cli.js"
+  },  
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "lint": "npx eslint ./src --fix",
+    "test": "npx jest ./src",
+    "package": "docker build -t bastier_heraud/vehicle-server:${TAG}",
+    "publish": "docker image push bastier_heraud/vehicle-server:${TAG}",
+    "release": "npm run package && npm run publish",
+    "build-exec": "chmod +x dist/vehicle-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Timoonz/ci-cd-bastier-heraud.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Timoonz/ci-cd-bastier-heraud/issues"
+  },
+  "homepage": "https://github.com/Timoonz/ci-cd-bastier-heraud#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.0.10",
+    "@types/pg": "^8.16.0",
+    "eslint": "^9.39.2",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0"
+  },
+  "dependencies": {
+    "@types/axios": "^0.9.36",
+    "axios": "^1.13.4",
+    "commander": "^14.0.3",
+    "express": "^5.0.1",
+    "pg": "^8.17.2"
+  }
+}
