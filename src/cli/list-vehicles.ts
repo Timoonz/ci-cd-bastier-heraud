@@ -5,17 +5,16 @@ export interface ListVehiclesOptions {
   server_address: string;
 }
 
-interface ListResponse {
-  vehicles: Array<{
-    vehicle: {
-        id: number;
-        shortcode: string;
-        battery: number;
-        position: { longitude: number; latitude: number };
-    }
-  }>
+interface Vehicle {
+  id: number;
+  shortcode: string;
+  battery: number;
+  position: { longitude: number; latitude: number };
 }
 
+interface ListResponse {
+  vehicles: Vehicle[];
+}
 
 // Récupération de la liste des véhicules en envoyant une requête GET au serveur
 export async function listVehicles(options: ListVehiclesOptions) {
@@ -26,11 +25,10 @@ export async function listVehicles(options: ListVehiclesOptions) {
     const list_vehicles = response.data as ListResponse;
 
     console.log("List of vehicles:");
-    for (const item of list_vehicles.vehicles) {
-      const v = item.vehicle;
+    for (const v of list_vehicles.vehicles) {
       console.log(`- ID: ${v.id}, Shortcode: ${v.shortcode}, Battery: ${v.battery}%, Position: (${v.position.longitude}, ${v.position.latitude})`);
     }
-    return list_vehicles;
+    return list_vehicles.vehicles;
 
     } catch (error: any) {
     // Erreurs serveur
