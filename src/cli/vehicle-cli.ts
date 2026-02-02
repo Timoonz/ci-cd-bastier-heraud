@@ -14,8 +14,8 @@ program.command('create-vehicle')
     .description('Create a vehicle on the designated server address')
     .requiredOption('--shortcode <shortcode>', 'Shortcode of the vehicle (4 chars long)')
     .requiredOption('--battery <level>', 'Battery level (0 to 100)')
-    .requiredOption('--longitude <long>', 'Longitude of the vehicle')
-    .requiredOption('--latitude <lat>', 'Latitude of the vehicle')
+    .requiredOption('--longitude <long>', 'Longitude of the vehicle (between -90 and 90)')
+    .requiredOption('--latitude <lat>', 'Latitude of the vehicle (between -90 and 90)')
     .action(async (cmdOptions: CreateVehicleOptions) => {
         await createVehicle({
             ...cmdOptions,
