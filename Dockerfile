@@ -1,6 +1,7 @@
 FROM node:20-alpine3.19 AS build
-COPY ./src/cli /app
+RUN mkdir -p /app
 WORKDIR /app
+COPY . ./
 RUN npm install && \
   npm run build
 
@@ -9,11 +10,7 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY ./package.json ./package-lock.json ./
 RUN npm install --production
-
-# FROM node:20-alpine3.19
-# RUN mkdir -p /app
-# WORKDIR /app
-# COPY ./package-lock.json ./package.json ./
-# RUN npm install --production
-# COPY ./src/cli ./cli
-# RUN npm run build
+COPY --from=build /app/dist /app/dist
+RUN npm run build-exec
+ENTRYPOINT ["node", "dist/cli/vehicle-cli.js"]
+# CMD ["--help"]
