@@ -1,6 +1,8 @@
 name: cd-pipeline
 on: 
-    - push
+    push :
+      tags :
+        - '*'
 jobs: 
   release:
     runs-on: ubuntu-latest
