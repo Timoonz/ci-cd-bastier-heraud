@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { createVehicle, CreateVehicleOptions } from './create-vehicle';
 import { ListVehiclesOptions, listVehicles } from './list-vehicles';
 import { DeleteVehicleOptions, deleteVehicle} from './delete-vehicle';
