@@ -1,13 +1,13 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */ 
 import axios from 'axios';
 
-export interface deleteVehicleOptions {
+export interface DeleteVehicleOptions {
   server_address: string;
   shortcode: number;
 }
 
 // Suppression d'un véhicule en envoyant une requête DELETE au serveur
-export async function deleteVehicle(options: deleteVehicleOptions) {
+export async function deleteVehicle(options: DeleteVehicleOptions) {
   const { server_address, shortcode } = options;
   try {
     await axios.delete(`http://${server_address}/vehicles/${shortcode}`);
