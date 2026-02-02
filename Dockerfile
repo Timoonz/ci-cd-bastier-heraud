@@ -12,5 +12,5 @@ COPY ./package.json ./package-lock.json ./
 RUN npm install --production
 COPY --from=build /app/dist /app/dist
 RUN npm run build-exec
-ENTRYPOINT ["node", "dist/cli/vehicle-cli.js"]
+ENTRYPOINT ["node", "dist/vehicle-cli.js"]
 # CMD ["--help"]
