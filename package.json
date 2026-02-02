@@ -9,8 +9,8 @@
     "build": "rm -rf ./dist && tsc",
     "lint": "npx eslint ./src --fix",
     "test": "npx jest ./src",
-    "package": "docker build -t bastier_heraud/vehicle-server:$TAG .",
-    "publish": "docker push bastier_heraud/vehicle-server:$TAG",
+    "package": "docker build -t timoonz/vehicle-server:$TAG .",
+    "publish": "docker push timoonz/vehicle-server:$TAG",
     "release": "npm run package && npm run publish",
     "build-exec": "chmod +x dist/vehicle-cli.js"
   },
