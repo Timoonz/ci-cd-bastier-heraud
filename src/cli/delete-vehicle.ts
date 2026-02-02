@@ -3,15 +3,39 @@ import axios from 'axios';
 
 export interface DeleteVehicleOptions {
   server_address: string;
-  shortcode: number;
+  shortcode: string;
+}
+
+interface Vehicle {
+  id: number;
+  shortcode: string;
+  battery: number;
+  position: { longitude: number; latitude: number };
+}
+
+interface ListResponse {
+  vehicles: Vehicle[];
 }
 
 // Suppression d'un véhicule en envoyant une requête DELETE au serveur
 export async function deleteVehicle(options: DeleteVehicleOptions) {
   const { server_address, shortcode } = options;
   try {
-    await axios.delete(`http://${server_address}/vehicles/${shortcode}`);
-    console.log(`Deleted vehicle with shortcode \`${shortcode}\``);
+    // Récupération de la liste des véhicules, pour obtenir l'ID du véhicule à supprimer
+    const response = await axios.get(`http://${server_address}/vehicles`);
+    const list_vehicles = response.data as ListResponse;
+
+    // Recherche du véhicule par son shortcode. On prend le premier match
+    const target = list_vehicles.vehicles.find((v: any) => v.shortcode === shortcode);
+
+    if (!target) {
+      console.error(`Vehicle with shortcode \`${shortcode}\` not found.`);
+      return false;
+    }
+
+    // Suppression du véhicule par son ID
+    await axios.delete(`http://${server_address}/vehicles/${target.id}`);
+    console.log(`Deleted vehicle \`${shortcode}\` (ID: ${target.id})`);
     return true;
     
   } catch (error: any) {
